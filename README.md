@@ -63,7 +63,7 @@ Jinými slovy:
 
 Každý modul je stavový automat ([FSM](https://en.wikipedia.org/wiki/Finite-state_machine)), který podle svého aktuálního **stavu** vykonává právě jednu věc.
 
-Modul **reaguje** na události a **přechází** ze stavu do stavu. (Čímž se - mimojiné - významně snižuje chybovost a zrychluje tvorba nového modulu.)
+Modul **reaguje** na události a **přechází** ze stavu do stavu. (Čímž se - mimo jiné - významně snižuje chybovost a zrychluje tvorba nového modulu.)
 
 Správně vytvořený modul má rychlost provádění programu **40-70 tisíc** opakování za vteřinu podle toho, kolik má aktuálně práce. Jinými slovy **reakční doba** na události či **přechod mezi stavy** je typicky kolem 15-25 µs.
 
@@ -81,7 +81,7 @@ K orientaci, kde se modul (uživatel) nachází slouží výhradně LCD displej.
 
 ### Výběr (přepnutí) modulu
 
-Přepnout modul nejde vždy - modul musí být ve stavu, který přepnutí umožňuje. Typicky ve výchozím stavu "nic nedělání" (na LCD nahoře znárorněno silným pruhem).
+Přepnout modul nejde vždy - modul musí být ve stavu, který přepnutí umožňuje. Typicky ve výchozím stavu "nic nedělání" (na LCD nahoře znázorněno silným pruhem).
 
 ![HU0](./doc/hu-stav0.png)
 
@@ -122,7 +122,7 @@ Poznámka: R+ v terminálu označuje právě takový stisk `R`, kdy jádro kontr
 
 ### Stav modulu graficky
 
-**Silný čerchovaný pruh** v prvním řádku displeje - viz predchozí bod.
+**Silný čerchovaný pruh** v prvním řádku displeje - viz předchozí bod.
 
 **Slabý čerchovaný pruh** - modul je ve stavu, kdy čeká "na práci."
 
@@ -144,7 +144,7 @@ Poznámka: R+ v terminálu označuje právě takový stisk `R`, kdy jádro kontr
 `R` přepíná stavy **Výchozí** | **Odpočet** | **Závod**
 
 **Výchozí**
-- vymaže dispeje (pouze při spuštění modulu) (při potřebě vymazat displeje podrž `R` a spusť modul znovu)
+- vymaže displeje (pouze při spuštění modulu) (při potřebě vymazat displeje podrž `R` a spusť modul znovu)
 
 **Odpočet**
 - nastaví na displeje délku odpočtu
@@ -214,7 +214,7 @@ Slouží k úpravám nastavení systému a modulů. Pro ovládání (komunikaci 
 
 ##### help
 
-Vypíše seznam příkazů, které konkrétní firmare podporuje.
+Vypíše seznam příkazů, které konkrétní firmware podporuje.
 
 ##### info
 
@@ -267,18 +267,19 @@ Firmware ve formátu [.hex](https://en.wikipedia.org/wiki/Intel_HEX) se nahráv�
 Mikrokontrolery mají svá specifika. Není žádoucí, aby v systému s RTC běžely interní hodiny. Není žádoucí mít paměť zaplněnou modulem, který není potřeba. (Platí zejména pro Stopky v4.1)
 
 Který soubor stáhnout záleží na tom **"co"** (funkce/moduly) a **"na co"** (hardware) chcete instalovat - což je obsaženo v názvu souboru:
-- *v41/v50* - pro Stopky v4.1 nebo v5.0
-- *16X2/20X4* - velikost osazeného LCD displeje
-- *0x20/0x27/0x3F* - adresa osazeného LCD displeje
-- *M1M2,M1M3,M1M4* - které moduly build obsahuje (jen v4.1)
+- *v41, v50* - pro Stopky v4.1 nebo v5.0
+- *16X2, 20X4* - velikost osazeného LCD displeje
+- *0x20, 0x27, 0x3F* - adresa osazeného LCD displeje
+- *M1M2, M1M3, M1M4* - které moduly build obsahuje (jen v4.1)
+
     M1=HU, M2=S-S, M3=S-LP, M4=Hodiny
 - *rtc* - pro v5.0 s RTC
 - v5.0 bez "rtc" obsahuje interní (softwarové) hodiny
-- *atmega1284p/atmega644p* - procesor osazený na desce v5.0
+- *atmega1284p, atmega644p* - procesor osazený na desce v5.0
 
 "Výrobu" konkrétního souboru s firmware řídí [konfigurační soubory](./rms03/config/versions/), nebo v případě práce v IDE soubor build.h u projektu.
 
-Všechny verze mají defaultní konfiguraci displejů,
+Všechny verze mají jako výchozí tuto konfiguraci displejů:
 - displej 1: D0-D6, adresa 0 (dvojtečka na D0; tedy adresy D0-D6)
 - displej 2: D0-D6, adresa 8 (dvojtečka na D0, tedy adresy D8-14)
 
@@ -291,9 +292,10 @@ Firmware ke stažení je ve složce [rms03/build/fw/](./rms03/build/fw/).
 ### Aktualizace zařízení
 
 *TODO: popis xLoader*
+
 *TODO: popis AVRDUDESS*
 
-Před nahráním se **ujistěte**, že máte k dispozici aktuálně používaný FW ve formátu .hex!
+Před nahráním se **ujistěte**, že máte k dispozici aktuálně používaný firmware ve formátu .hex.
 
 Nastavení ještě nemá dokumentaci (a obsahuje známou chybu).
 
@@ -304,13 +306,15 @@ Použití příkazu 'set' v Nastavení **přepíše** EEPROM.
 ## FAQ
 
 **SD karta?**
+
 Záznam na SD kartu zatím není implementován. Pokud by byl zájem, lze doplnit.
 
 **Jaký terminál?**
+
 Terminál doporučuji takový, který
-- má řádek, ve kterém se napíše celý vstup a odešle najednou stistem Enter
-- umí měnit velikost písma, ideálně pohodlně/rychle (Ctrl+kolečko myši)
-- ukládá výstup průběžně do souboru
+- má **vstupní řádek,** ve kterém se napíše celý text a odešle najednou stistem Enter
+- umí **měnit velikost písma**, ideálně pohodlně/rychle (Ctrl+kolečko myši)
+- ukládá výstup **průběžně** do souboru
 
 Pro Windows těmto kritériím vyhovuje např.:
 - [CoolTerm](https://freeware.the-meiers.org)
