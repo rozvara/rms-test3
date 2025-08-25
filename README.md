@@ -15,10 +15,10 @@ Ujistěte se, že máte zálohu firmware, který můžete v případě potřeby 
 # RMS 0.3
 
 **Modulární** firmware (nejen) pro Stopky v4.1 a v5.0 a externí sériové displeje od Sakul.cz
-- rychlé a **přesné** měření
+- rychlé a **[přesné](./doc/log+presnost+mereni.txt)** měření
 - ovládání zařízení **tlačítky**
 - rozlišení časů na vstupech **4 µs**
-- **záznam závodu** do terminálu, vč. vyhodnocení závodu
+- **záznam závodu** do terminálu, vč. [vyhodnocení]((./doc/log+presnost+mereni.txt)) závodu
 - **hodiny** s RTC nebo interní/softwarové
 - ovládání displejů z ohledem na **diváky**
 - **libovolná** konfigurace externích displejů

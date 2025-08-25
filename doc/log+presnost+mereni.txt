@@ -1,0 +1,24 @@
+Stopky_HU> Zavod zahajen
+System> Log pripraven
+System> Log typ#1 ulozen
+System> Pulz L @ 88224.496 ms
+System> Pulz P @ 88224.956 ms
+System> Log typ#3 ulozen
+Stopky_HU> Leva draha      0:07.366
+System> Log typ#4 ulozen
+Stopky_HU> Prava draha      0:07.366
+Stopky_HU> Zadost o vypis
+
+=== Zaznam zavodu ===
+[+00:00.000] START
+[+00:07.366] CIL LEVA DRAHA
+[+00:07.366] CIL PRAVA DRAHA
+
+--- Souhrn zavodu ---
+Levy cas:  00:07.366
+Pravy cas: 00:07.366
+Vysledek:  NEROZHODNE
+---------------------
+Datum:     24.08.2025
+Cas:       16:16:06
+=== Konec zaznamu ===
