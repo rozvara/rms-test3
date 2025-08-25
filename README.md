@@ -26,12 +26,12 @@ Ujistěte se, že máte zálohu firmware, který můžete v případě potřeby 
 Otestováno natolik, že je vhodné pro závody.
 
 Tato verze obsahuje:
-- [Stopky HU](#stopky-hu)
-- [Stopky S-S](#stopky-s-s)
-- [Stopky S-LP](#stopky-s-lp)
-- [Hodiny](#hodiny)
-- [Nastavení](#nastavení)
-- [Demo](#demo)
+- [Stopky HU](#modul-stopky-hu)
+- [Stopky S-S](#modul-stopky-s-s)
+- [Stopky S-LP](#modul-stopky-s-lp)
+- [Hodiny](#modul-hodiny)
+- [Nastavení](#modul-nastavení)
+- [Demo](#modul-demo)
 
 RMS není určeno pro jednu konkrétní verzi stopek, ale slouží jako univerzální **jádro** a **framework**.
 
@@ -85,13 +85,21 @@ Přepnout modul nejde vždy - modul musí být ve stavu, který přepnutí umož
 
 ![HU0](./doc/hu-stav0.png)
 
+
+![HU0maly](./doc/hu-stav0-16x2.png)
+
+
 ![Hodiny0](./doc/hodiny-stav0.png)
+
+
+![Hodiny0maly](./doc/hodiny-stav0-16x2.png)
+
 
 Tedy: silný pruh nahoře -> modul jde přepnout.
 
 Při delším stisku `R` se po chvíli objeví **Menu**, `R` je nutné držet stisknuté. Nazvěme to "Dlouhý Reset". Potom `L` a `P` vybírá možnost, `S` mění zobrazenou nabídku.
 
-Menu "dlouhý reset" má tři nabídky.
+Menu "Dlouhý Reset" má tři nabídky.
 
 **Přepnutí modulu** - `L` `P` vybírá modul, uvolněním `R` se přepne.
 
@@ -106,6 +114,7 @@ Menu "dlouhý reset" má tři nabídky.
 ![Menu3](./doc/dlouhy-reset3.png)
 
 *Nastavení systému:* uloží aktuálně spuštěný modul jako výchozí po restartu + nastavení zobrazování pulzů.
+
 *Nastavení modulu:* uloží parametry aktuálního modulu, pokud to spuštěný modul podporuje.
 
 Poznámka: R+ v terminálu označuje právě takový stisk `R`, kdy jádro kontroluje dlouhý stisk a případně zobrazí menu. Je-li aktivní toto menu, není aktivní modul.
@@ -113,15 +122,15 @@ Poznámka: R+ v terminálu označuje právě takový stisk `R`, kdy jádro kontr
 
 ### Stav modulu graficky
 
-Silný čerchovaný pruh v prvním řádku displeje - viz predchozí bod.
+**Silný čerchovaný pruh** v prvním řádku displeje - viz predchozí bod.
 
-Slabý čerchovaný pruh - modul je ve stavu, kdy čeká "na práci."
+**Slabý čerchovaný pruh** - modul je ve stavu, kdy čeká "na práci."
 
 ![HU5](./doc/hu-stav5.png)
 
-![HU1](./doc/hu-stav1.png)
+![HU5maly](./doc/hu-stav5-16x2.png)
 
-Slabý černý pruh - modul "pracuje."
+**Slabý černý pruh** - modul "pracuje."
 
 ![HU2](./doc/hu-stav2.png)
 
@@ -155,11 +164,11 @@ Slabý černý pruh - modul "pracuje."
 - jakmile je Levá i Pravá v cíli, přechází do stavu **Měření ukončeno** a tiskne log
 - `R` zruší měření a přechází do stavu **Měření ukončeno**
 
-Nejlépe je ale vždy vidět funkčnost modulu na jeho [FSM](./doc/fsm-hu.svg)
+Nejlépe je ale vždy vidět funkčnost modulu na jeho [FSM](./doc/fsm-hu.png)
 
 Poznámka:
 - čas odpočtu a nuly se na displeje posílají se zpožděním 2,5 vteřiny proto, aby displeje neblikaly při výběru stavu. (Čas lze změnit v Nastavení.)
-- při volbě "Uložit nastavení modulu" z menu "dlouhý reset" se nastavený čas odpočtu uloží jako výchozí
+- při volbě "Uložit nastavení modulu" z menu "Dlouhý Reset" se nastavený čas odpočtu uloží jako výchozí
 
 
 ### Modul "Stopky S-S"
@@ -195,7 +204,7 @@ Poznámky:
   - s RTC vždy
   - jen pokud jsou interní hodiny aktivní
 - pokud modul Hodiny instalovaný není, log neobsahuje datum a čas
-- (jen interní hodiny) při volbě "Uložit nastavení modulu" z menu "dlouhý reset" se uloží jen datum, ne čas
+- (jen interní hodiny) při volbě "Uložit nastavení modulu" z menu "Dlouhý Reset" se uloží jen datum, ne čas
 
 ### Modul "Nastavení"
 
@@ -219,11 +228,12 @@ Zadáním `rtc YYYY-MM-DD HH:MM:SS` se nastaví zadaný datum a čas do RTC.
 
 ##### list, set, del
 
-Každý modul má svůj "identifikátor" (číslo 1-127) a může si ukládat svá nastavení a konfigurece do EEPROM paměti. (Identifikátor "0" využívá jádro/systém.)
+Každý modul má svůj "identifikátor" (číslo 1-127) a může si ukládat svá nastavení a konfigurace do EEPROM paměti. (Identifikátor "0" využívá jádro/systém.)
 
 Aby si modul mohl uložit více nastavení (např. tři šablony pro displeje, výchozí hodnoty pro různé stavy...), slouží k jejich rozlišení "klíč" (číslo 1-127).
 
 *TODO: dokument/tabulka - modul, klíč, význam*
+
 *TODO: dokument/tabulka - formát šablon pro konfiguraci displejů*
 
 Příklad: Nastavení "HU" - modul 1, klíč 0: odpočet MM,SS a zpoždění aktualizace externích displejů S, ds (při přepínání ze závodu na odpočet)
@@ -234,6 +244,7 @@ Pro odpočet 3m 30s a zpoždění 2,9 sekundy:
 Pro odpočet 1m 15s a okamžitou změnu:
 `set 1 0   1, 15,   0, 0`
 
+(Na počtu mezer nezáleží, zde mezery navíc pro větší přehlednost.)
 
 ##### perf
 
