@@ -18,7 +18,7 @@ Ujistěte se, že máte zálohu firmware, který můžete v případě potřeby 
 - rychlé a **[přesné](./doc/log+presnost+mereni.txt)** měření
 - ovládání zařízení **tlačítky**
 - rozlišení časů na vstupech **4 µs**
-- **záznam závodu** do terminálu, vč. [vyhodnocení]((./doc/log+presnost+mereni.txt)) závodu
+- **záznam závodu** do terminálu, vč. [vyhodnocení](./doc/log+presnost+mereni.txt) závodu
 - **hodiny** s RTC nebo interní/softwarové
 - ovládání displejů z ohledem na **diváky**
 - **libovolná** konfigurace externích displejů
