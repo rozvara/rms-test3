@@ -14,18 +14,18 @@ Ujistěte se, že máte zálohu firmware, který můžete v případě potřeby 
 
 # RMS 0.3
 
-**Modulární** firmware (nejen) pro Stopky v4.1 a v5.0 a externí sériové displeje od Sakul.cz
+**Modulární** firmware (nejen) pro Stopky v4.1 a v5.0 s obsluhou externích displejů od Sakul.cz
 - rychlé a **[přesné](./doc/log+presnost+mereni.txt)** měření
 - ovládání zařízení **tlačítky**
 - rozlišení časů na vstupech **4 µs**
 - **záznam závodu** do terminálu, vč. [vyhodnocení](./doc/log+presnost+mereni.txt) závodu
-- **hodiny** s RTC nebo interní/softwarové
+- **hodiny** s RTC i bez (interní/softwarové)
 - ovládání displejů z ohledem na **diváky**
 - **libovolná** konfigurace externích displejů
 
-Otestováno natolik, že je vhodné pro závody.
+Firmware je natolik otestovaný, že je vhodný pro závody.
 
-Tato verze obsahuje:
+Tato verze obsahuje **moduly**:
 - [Stopky HU](#modul-stopky-hu)
 - [Stopky S-S](#modul-stopky-s-s)
 - [Stopky S-LP](#modul-stopky-s-lp)
@@ -33,9 +33,15 @@ Tato verze obsahuje:
 - [Nastavení](#modul-nastavení)
 - [Demo](#modul-demo)
 
-RMS není určeno pro jednu konkrétní verzi stopek, ale slouží jako univerzální **jádro** a **framework**.
+-----
+
+## Cíl a směr RMS
+
+RMS nejsou "Stopky." Cílem není ani nějaká další varianta stopek. Cílem RMS je univerzální, rychlé a efektivní **jádro** a takový **framework,** aby "modul stopky XY" zvládl i hobby/Arduino programátor.
 
 *"Potřebujete obsloužit 24h závod s konfigurací externích displejů s 10 a 5 znaky, kdy na jednom budou stopky HH:MM:SS.ss a na druhém hodiny HH:MM? S RMS takový modul lze udělat a otestovat za dvě tři hodiny."*
+
+*"Potřebujete ovládat osm sériových displejů najednou? Objektů [SerialDisplay](./rms03/core/displays.h) můžete mít kolik chcete. RMS na Arduino Mega už běží..."*
 
 -----
 
@@ -95,7 +101,7 @@ Přepnout modul nejde vždy - modul musí být ve stavu, který přepnutí umož
 ![Hodiny0maly](./doc/hodiny-stav0-16x2.png)
 
 
-Tedy: silný pruh nahoře -> modul jde přepnout.
+Shrnutí: **Silný pruh nahoře -> modul jde přepnout.**
 
 Při delším stisku `R` se po chvíli objeví **Menu**, `R` je nutné držet stisknuté. Nazvěme to "Dlouhý Reset". Potom `L` a `P` vybírá možnost, `S` mění zobrazenou nabídku.
 
@@ -119,10 +125,11 @@ Menu "Dlouhý Reset" má tři nabídky.
 
 Poznámka: R+ v terminálu označuje právě takový stisk `R`, kdy jádro kontroluje dlouhý stisk a případně zobrazí menu. Je-li aktivní toto menu, není aktivní modul.
 
+Shrnutí: **Stále držím `R` -> `S` přepíná, co chci změnit -> `L`+`P` to změní.** Po uvolnění `R` se aktivuje modul.
 
 ### Stav modulu graficky
 
-**Silný čerchovaný pruh** v prvním řádku displeje - viz předchozí bod.
+**Silný čerchovaný pruh** v prvním řádku displeje - modul lze přepnout, viz [výše.](#výběr-přepnutí-modulu)
 
 **Slabý čerchovaný pruh** - modul je ve stavu, kdy čeká "na práci."
 
@@ -159,16 +166,16 @@ Poznámka: R+ v terminálu označuje právě takový stisk `R`, kdy jádro kontr
 - `S` odstartuje závod
 
 **Běžící závod**
-- `M` zaznamená mezičas (jen v5.0)
+- `M` zaznamená mezičas (vstup IN5 u v5.0)
 - `L` a `P` ukončuje měření v dráze
 - jakmile je Levá i Pravá v cíli, přechází do stavu **Měření ukončeno** a tiskne log
 - `R` zruší měření a přechází do stavu **Měření ukončeno**
 
-Nejlépe je ale vždy vidět funkčnost modulu na jeho [FSM](./doc/fsm-hu.png)
+Nejlépe je vidět celá logika a funkčnost modulu na jeho [FSM](./doc/fsm-hu.png)
 
-Poznámka:
-- čas odpočtu a nuly se na displeje posílají se zpožděním 2,5 vteřiny proto, aby displeje neblikaly při výběru stavu. (Čas lze změnit v Nastavení.)
-- při volbě "Uložit nastavení modulu" z menu "Dlouhý Reset" se nastavený čas odpočtu uloží jako výchozí
+Poznámky:
+- čas odpočtu a nuly se na displeje posílají se zpožděním 2,5 vteřiny proto, aby displeje neblikaly při výběru stavu. (Čas zpoždění lze měnit v Nastavení.)
+- při volbě "Uložit nastavení modulu" z menu "Dlouhý Reset" se nastavený čas odpočtu uloží jako výchozí.
 
 
 ### Modul "Stopky S-S"
@@ -177,7 +184,7 @@ Poznámka:
 
 I když má modul pouze jeden stav pro stopky, `R` střídá stavy **Výchozí** a **Stopky**. To proto, aby šlo na displejích mít nuly (závod připraven), cílové časy nebo cedule vymazat a mít je prázdné. Ovládání je analogické s "HU".
 
-Modul nekontroluje chyby na koncových spínačích.
+Modul nekontroluje chyby na koncových spínačích. U v5.0 je na IN5 mezičas.
 
 ### Modul "Stopky S-LP"
 
@@ -185,13 +192,13 @@ Modul nekontroluje chyby na koncových spínačích.
 
 Ovládání je analogické s výše uvedenými moduly.
 
-Modul nekontroluje chyby na koncových spínačích.
+Modul nekontroluje chyby na koncových spínačích. U v5.0 je na IN5 mezičas.
 
 ### Modul "Hodiny"
 
-*"Zobrazení aktuálního času na displejích pro chvíle, kdy je zrovna pauza"*
+*"Zobrazení aktuálního času na displejích pro chvíle, kdy je zrovna pauza na oběd"*
 
-Po aktivaci modulu zobrazí čas na prvním displeji (levá dráha), na LCD i na interním.
+Po aktivaci modulu zobrazí čas na prvním displeji (levá dráha), na LCD i na interním interním displeji.
 
 Firmware pro RTC hodiny nemá žádný další stav a datum/čas se nastavuje v modulu Nastavení.
 
