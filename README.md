@@ -242,7 +242,7 @@ Zadáním `rtc YYYY-MM-DD HH:MM:SS` se nastaví zadaný datum a čas do RTC.
 
 Každý modul má svůj "identifikátor" (číslo 1-127) a může si ukládat svá nastavení a konfigurace do EEPROM paměti. (Identifikátor "0" využívá jádro/systém.)
 
-Aby si modul mohl uložit více nastavení (např. tři šablony pro displeje, výchozí hodnoty pro různé stavy...), slouží k jejich rozlišení "klíč" (číslo 1-127).
+Aby si modul mohl uložit více nastavení (např. tři šablony pro displeje, výchozí hodnoty pro různé stavy...), slouží k jejich rozlišení "klíč" (číslo 0-127).
 
 *TODO: dokument/tabulka - modul, klíč, význam*
 
