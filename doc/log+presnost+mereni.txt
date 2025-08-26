@@ -1,3 +1,29 @@
+Níže uvedený výstup logu závodu ukazuje:
+
+1)
+Modul neeviduje log měření - to dělá "jádro".
+"Záznam závodu" (a pro dvě dráhy i "Souhrn 
+závodu") tiskne také jádro.
+
+Úkolem modulu je pouze
+- sledovat, zda nastala událost,
+- pokud nastala, uložit do logu čas události.
+- požádat o výpis ve správný okamžik
+
+Jinými slovy
+- v každém modulu funguje log stejně
+- modul nemá vliv na přesnost měření/výstup logu
+
+2)
+Když přijdou "stejné časy" - resp. pulzy
+v rámci jedné milivteřiny, nejsou to stejné
+časy, je-li odchylka větší než 4µs, což je jeden
+tik měřícího časovače.
+
+V níže uvedeném případě je mezi pulzy L a P
+rozestup 0,46ms ± 4µs.
+
+________________________________________________
 Stopky_HU> Zavod zahajen
 System> Log pripraven
 System> Log typ#1 ulozen
