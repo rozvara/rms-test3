@@ -20,15 +20,15 @@ Ujistěte se, že máte zálohu firmware, který můžete v případě potřeby 
 - rozlišení časů na vstupech **4 µs**
 - **záznam závodu** do terminálu, vč. [vyhodnocení](./doc/log+presnost+mereni.txt) závodu
 - **hodiny** s RTC i bez (interní/softwarové)
-- ovládání displejů z ohledem na **diváky**
+- ovládání displejů s ohledem na **diváky**
 - **libovolná** konfigurace externích displejů
 
 Firmware je natolik otestovaný, že je vhodný pro závody.
 
 Tato verze obsahuje **moduly**:
-- [Stopky HU](#modul-stopky-hu)
-- [Stopky S-S](#modul-stopky-s-s)
-- [Stopky S-LP](#modul-stopky-s-lp)
+- [Stopky HU](#modul-stopky-hu) - závod ve dvou drahách (aka Hasičský útok)
+- [Stopky S-S](#modul-stopky-s-s) - závod v jedné dráze, ukončuje `S`
+- [Stopky S-LP](#modul-stopky-s-lp) - závod v jedné dráze, ukončuje `L` nebo `P`
 - [Hodiny](#modul-hodiny)
 - [Nastavení](#modul-nastavení)
 - [Demo](#modul-demo)
@@ -198,7 +198,7 @@ Modul nekontroluje chyby na koncových spínačích. U v5.0 je na IN5 mezičas.
 
 *"Zobrazení aktuálního času na displejích pro chvíle, kdy je zrovna pauza na oběd"*
 
-Po aktivaci modulu zobrazí čas na prvním displeji (levá dráha), na LCD i na interním interním displeji.
+Po aktivaci modulu zobrazí čas na prvním displeji (levá dráha), na LCD i na interním displeji.
 
 Firmware pro RTC hodiny nemá žádný další stav a datum/čas se nastavuje v modulu Nastavení.
 
@@ -216,6 +216,11 @@ Poznámky:
 ### Modul "Nastavení"
 
 Slouží k úpravám nastavení systému a modulů. Pro ovládání (komunikaci s modulem) je potřeba sériový terminál se vstupní řádkou.
+
+*Poznámky:*
+- *Implementace Nastavení se mi nelíbí a budu to celé předělávat. Příkazy se nezmění.*
+- *Je tam nekritická chyba v mazání záznamů - jde smazat smazaný*
+- *Úplná dokumentace bude asi až v další verzi*
 
 #### Příkazy
 
@@ -304,9 +309,7 @@ Firmware ke stažení je ve složce [rms03/build/fw/](./rms03/build/fw/).
 
 Před nahráním se **ujistěte**, že máte k dispozici aktuálně používaný firmware ve formátu .hex.
 
-Nastavení ještě nemá dokumentaci (a obsahuje známou chybu).
-
-Použití příkazu 'set' v Nastavení **přepíše** EEPROM.
+Použití příkazu 'set' v Nastavení **zapisuje do** EEPROM, čímž se ztratí nastavení jiného firmware.
 
 -----
 
@@ -319,7 +322,7 @@ Záznam na SD kartu zatím není implementován. Pokud by byl zájem, lze doplni
 **Jaký terminál?**
 
 Terminál doporučuji takový, který
-- má **vstupní řádek,** ve kterém se napíše celý text a odešle najednou stistem Enter
+- má **vstupní řádek,** ve kterém se napíše celý text a odešle najednou stiskem Enter
 - umí **měnit velikost písma**, ideálně pohodlně/rychle (Ctrl+kolečko myši)
 - ukládá výstup **průběžně** do souboru
 
