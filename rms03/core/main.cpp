@@ -5,9 +5,9 @@
 void setup() {
   initTimer();
   Serial.begin(115200);
-  #ifdef TARGET_MCU_LEONARDO
-    while (!Serial && exactMillis() < 2000); // čekání na USB CDC, max 2s
-  #endif
+//HOTFIX-TEST 03.1   #ifdef TARGET_MCU_LEONARDO
+//HOTFIX-TEST 03.1     while (!Serial && exactMillis() < 2000); // čekání na USB CDC, max 2s
+//HOTFIX-TEST 03.1   #endif
   systemEcho(F("Start "), false);
   SERIAL_PRINT(FW_VERSION); SERIAL_PRINTLN(FW_TAG);
 

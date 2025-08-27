@@ -1,8 +1,8 @@
 Testovací repozitář pro každého, kdo chce pomoct s vývojem.
 
-Tato verze je dostatečně otestovaná jen na v5.0 a lze používat v závodech.
+Tato verze je dostatečně otestovaná **jen na v5.0** a lze používat v závodech.
 
-**Pozor!** U v4.1 se na jednom PC, resp. USB objevily potíže s výstupem do terminálu - v jednom USB jde, v jiném nejde. V jiném PC při připojení napřímo jde, při připojení přes USB-C rozbočovač nejde. Příčinu zkoumám.
+U v4.1 je aktuálně nejméně otestované místo komunikace do terminálu/připojování k PC.
 
 Co se změnilo je uvedeno v souboru [CHANGELOG.md](./CHANGELOG.md).
 

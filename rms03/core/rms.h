@@ -270,11 +270,11 @@ bool setEeprom(uint8_t idModul, uint8_t idKey, const uint8_t* buf);
 bool setEeprom(uint8_t idModul, uint8_t idKey, const char* buf);
 
 
-// === Makra kvůli Leonardo
-#ifdef TARGET_MCU_LEONARDO
-  #define SERIAL_PRINT(x)   if (Serial) Serial.print(x)
-  #define SERIAL_PRINTLN(x) if (Serial) Serial.println(x)
-#else
+//HOTFIX-TEST 03.1 // === Makra kvůli Leonardo
+//HOTFIX-TEST 03.1 #ifdef TARGET_MCU_LEONARDO
+//HOTFIX-TEST 03.1   #define SERIAL_PRINT(x)   if (Serial) Serial.print(x)
+//HOTFIX-TEST 03.1   #define SERIAL_PRINTLN(x) if (Serial) Serial.println(x)
+//HOTFIX-TEST 03.1 #else
   #define SERIAL_PRINT(x)   Serial.print(x)
   #define SERIAL_PRINTLN(x) Serial.println(x)
-#endif
+//HOTFIX-TEST 03.1 #endif

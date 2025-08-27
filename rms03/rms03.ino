@@ -3,7 +3,7 @@
 // Licencováno pod GNU GPL v3. Bez záruky.
 // Viz <https://www.gnu.org/licenses/gpl-3.0.html> pro plné znění licence.
 
-#define FW_VERSION "RMS 0.3"
+#define FW_VERSION "RMS 0.3t2"
 
 #include "build.h"         // procesor, displej, moduly, předvolby
 #include "config/config.h" // PCB/piny
